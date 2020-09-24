@@ -1,0 +1,8 @@
+.navLink{
+    color: black;
+    font-weight: bold;
+}
+.navLink:hover{
+    color: #F91944;
+    border-bottom: 1px solid #F91944;
+}

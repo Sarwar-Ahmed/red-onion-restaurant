@@ -1,0 +1,21 @@
+.topBanner{
+    background-image: url("https://iili.io/2721LP.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+}
+.bannerContent{
+    padding: 15%;
+}
+.searchBtn{
+    border-radius: 20px;
+}
+.searchButton{
+    border-radius: 20px;
+    padding: 0 25px;
+    color: white;
+    margin-left: -15px;
+    z-index: 1;
+    background-color: #F91944;
+}

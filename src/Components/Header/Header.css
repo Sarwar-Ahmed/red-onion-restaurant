@@ -1,0 +1,11 @@
+.navLink{
+    margin: 0 10px;
+    text-decoration: none;
+    color: black
+}
+.signUpButton{
+    border-radius: 20px;
+    padding: 0 25px;
+    color: white;
+    background-color: #F91944;
+}
