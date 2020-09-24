@@ -1,4 +1,4 @@
-.servicesContent :hover{
+.servicesContent:hover{
     border-radius: 20px;
-    box-shadow: 10px 10px 10px lightgray;
+    box-shadow: 10px 10px 20px lightgray;
 }

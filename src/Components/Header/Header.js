@@ -8,8 +8,8 @@ const Header = () => {
     return (
         <Container fluid>
             <Container>
-                <Navbar expand="lg">
-                    <Navbar.Brand href="#home"><img src="https://iili.io/27JGwB.png" width="100" className="d-inline-block align-top"alt=""/></Navbar.Brand>
+                <Navbar expand="lg" className="fixed">
+                    <Navbar.Brand><Link to="/home"><img src="https://iili.io/27JGwB.png" width="100" className="d-inline-block align-top"alt=""/></Link></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
