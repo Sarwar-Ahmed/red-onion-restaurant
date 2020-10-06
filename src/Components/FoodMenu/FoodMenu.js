@@ -42,15 +42,15 @@ const FoodMenu = () => {
                             <div className="col-md-4 p-3 items">
                                 <Link to={`/itemDetails/${item.id}`}>
                                     <img src={item.image} className="w-50" alt=""/>
-                                    <h5>{item.title}</h5>
+                                    <h5 className="text-dark">{item.title}</h5>
                                     <p className="text-muted">{item.info}</p>
-                                    <h2>${item.price}</h2>
+                                    <h2 className="text-dark">${item.price}</h2>
                                 </Link>
                             </div>    
                         )
                     }
                 </div>
-                <button onClick={() => handleCheckout()} className="bg-secondary text-white rounded pl-5 pr-5 m-5">Checkout Your Food</button>
+                <button  onClick={() => handleCheckout()} className="bg-secondary text-white rounded pl-5 pr-5 m-5" disabled>Checkout Your Food</button>
             </Container>
         </Container>
     );
