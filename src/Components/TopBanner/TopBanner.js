@@ -9,9 +9,9 @@ const TopBanner = () => {
                 <h1>Best food waiting for your belly</h1>
                 <Form inline className="justify-content-center">
                     <InputGroup>
-                        <FormControl type="text" placeholder="Search food items" className="searchBtn" />
+                        <FormControl type="text" placeholder="Search food items" style={{borderRadius: 20}}/>
                         <InputGroup.Append>
-                            <button className="searchButton">Search</button>
+                            <button className="btn btn-danger" style={{borderRadius: 20, marginLeft: -30, zIndex: 1}}>Search</button>
                         </InputGroup.Append>
                     </InputGroup>
                 </Form>

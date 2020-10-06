@@ -21,12 +21,13 @@ import FoodMenu from './Components/FoodMenu/FoodMenu';
 export const UserContext = createContext();
 function App() {
   const [userInfo, setUserInfo] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({});
 
   console.log(userInfo);
 
   return (
     <div className="App">
-      <UserContext.Provider value={[userInfo, setUserInfo]}>
+      <UserContext.Provider value={[userInfo, setUserInfo, loggedInUser, setLoggedInUser]}>
         <Router>
           <Header />
           <Switch>

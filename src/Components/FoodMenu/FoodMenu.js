@@ -50,7 +50,7 @@ const FoodMenu = () => {
                         )
                     }
                 </div>
-                <button  onClick={() => handleCheckout()} className="bg-secondary text-white rounded pl-5 pr-5 m-5" disabled>Checkout Your Food</button>
+                <button  onClick={() => handleCheckout()} className="bg-secondary btn text-white rounded pl-5 pr-5 m-5" disabled>Checkout Your Food</button>
             </Container>
         </Container>
     );
