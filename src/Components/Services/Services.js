@@ -2,10 +2,20 @@ import React from 'react';
 import './Services.css'
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import servicesData from '../../fakeData/servicesData';
 import { VscArrowRight } from "react-icons/vsc";
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Services = () => {
+    const [services, setServices] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/services`)
+        .then(res => res.json())
+        .then(data => {
+            setServices(data);
+        })
+    }, [])
     return (
         <Container fluid>
             <Container >
@@ -15,7 +25,7 @@ const Services = () => {
                 </div>
                 <div className="row">
                 {
-                    servicesData.map(service => 
+                    services.map(service => 
                         
                         <div className="col-md-4 servicesContent p-5 mb-5">
                             <div>

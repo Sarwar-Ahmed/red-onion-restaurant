@@ -2,18 +2,29 @@ import React, { useContext, useState } from 'react';
 import './FoodMenu.css'
 import { Container, Nav } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
-import fakeData from '../../fakeData/fakeData';
 import { UserContext } from '../../App';
+import { useEffect } from 'react';
 
 const FoodMenu = () => {
-    const [foodItems, setFoodItems] = useState(fakeData.filter(item => item.category === "lunch"));
-    const [isClicked, setIsClicked] = useState("lunch");  
+    const [foodMenu, setFoodMenu] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/foodMenu`)
+        .then(res => res.json())
+        .then(data => {
+            setFoodMenu(data);
+        })
+    }, [])
     const history = useHistory();
+    history.push("/")
+    // console.log(foodMenu);
+    const [foodItems, setFoodItems] = useState(foodMenu.filter(item => item.category === "lunch"));
+    const [isClicked, setIsClicked] = useState("lunch");  
 
 
     const handleFoodItem = (category) =>{
         setIsClicked(category)
-        const selectedItems = fakeData.filter(item => item.category === category);
+        const selectedItems = foodMenu.filter(item => item.category === category);
         setFoodItems(selectedItems);
         
     }
@@ -40,7 +51,7 @@ const FoodMenu = () => {
                     {
                         foodItems.map(item => 
                             <div className="col-md-4 p-3 items">
-                                <Link to={`/itemDetails/${item.id}`}>
+                                <Link to={`/itemDetails/${item._id}`}>
                                     <img src={item.image} className="w-50" alt=""/>
                                     <h5 className="text-dark">{item.title}</h5>
                                     <p className="text-muted">{item.info}</p>

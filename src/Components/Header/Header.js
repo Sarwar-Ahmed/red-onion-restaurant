@@ -3,8 +3,11 @@ import './Header.css'
 import React from 'react';
 import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../App";
 
 const Header = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     return (
         <Container fluid>
             <Container>
@@ -14,8 +17,16 @@ const Header = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
                             <Link  className="navLink" to="#home" bg="dark"><FiShoppingCart /></Link>
-                            <Link to="/login" className="navLink font-weight-bold">Login</Link>
-                            <Link to="/login" className="signUpButton">Sign up</Link>
+                            {
+                                loggedInUser.isSiggnedIn 
+                                ?<Link to="" className="navLink font-weight-bold">{loggedInUser.name}</Link>
+                                :<Link to="/login" className="navLink font-weight-bold">Login</Link>
+                            }
+                            {
+                                loggedInUser.isSiggnedIn
+                                ?<Link to="" onClick={() => setLoggedInUser({})} className="signUpButton">Sign out</Link>
+                                :<Link to="/login" className="signUpButton">Sign up</Link>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

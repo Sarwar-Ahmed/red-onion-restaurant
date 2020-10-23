@@ -7,9 +7,9 @@ const DeliveryInfo = () => {
     return (
         <Container fluid>
             <Container>
-                <div className="row p-5 deliveryInfoContainer">
+                <div className="row p-5">
                     <div className="col-md-8 p-5">
-                        <img src="https://www.jquery-az.com/wp-content/uploads/2016/08/95.0_1-jquery-map.jpg" alt="" className="rounded" style={{borderRadius: 20}}/>
+                        <img src="https://www.jquery-az.com/wp-content/uploads/2016/08/95.0_1-jquery-map.jpg" alt="" className="rounded img-fluid" style={{borderRadius: 20}}/>
                     </div>
                     <div className="col-md-4 p-5 rounded">
                         <div className="bg-light p-3" style={{borderRadius: 20, textAlign: "left"}}>
