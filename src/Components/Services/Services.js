@@ -27,7 +27,7 @@ const Services = () => {
                 {
                     services.map(service => 
                         
-                        <div className="col-md-4 servicesContent p-5 mb-5">
+                        <div className="col-md-4 servicesContent p-5 mb-5" key={service._id}>
                             <div>
                                 <img className="w-100 h-50 mb-4" src={service.image} alt=""/>
                             </div>

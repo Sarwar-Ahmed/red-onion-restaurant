@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import './Login.css'
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebaseConfig';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
-import { faBatteryThreeQuarters } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -17,8 +16,15 @@ const Login = () => {
         email: '',
         photo: ''
     })
+
+    let history = useHistory();
+    let location = useLocation();
+    let {from} = location.state || { from: {pathname:"/"}};
+
+
     const { register, handleSubmit, errors } = useForm();
     const [newUser, setNewUser] = useState(false);
+    
 
     if(firebase.apps.length === 0){
         firebase.initializeApp(firebaseConfig);
@@ -41,6 +47,7 @@ const Login = () => {
             }
             setUser(signedInUser);
             setLoggedInUser(signedInUser);
+            history.replace(from);
           }).catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;

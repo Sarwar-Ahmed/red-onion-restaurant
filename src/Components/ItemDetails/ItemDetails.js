@@ -7,9 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { FiShoppingCart } from "react-icons/fi";
 import { useEffect } from 'react';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 
 const ItemDetails = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [item, setItem] = useState([]);
     const {id} = useParams();
     useEffect(() => {
@@ -24,12 +27,23 @@ const ItemDetails = () => {
     const history = useHistory();
 
     const handleCart = () => {
-        history.push(`/foodMenu`);
+        const cartItem = item;
+        cartItem.quantity = quantity;
+        cartItem.email = loggedInUser.email;
+        fetch('http://localhost:5000/addCart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cartItem)
+        })
+        alert("Item successfully added to cart.");
+        history.push(`/home`);
     }
 
-    console.log(item);
     return (
         <Container fluid>
+            <Header />
             <Container>
                 <div className="row p-5">
                     <div className="col-md-6 p-5">
@@ -46,6 +60,7 @@ const ItemDetails = () => {
                     </div>
                 </div>
             </Container>
+            <Footer />
         </Container>
     );
 };

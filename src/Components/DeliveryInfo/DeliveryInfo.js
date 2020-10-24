@@ -2,10 +2,13 @@ import React from 'react';
 import './DeliveryInfo.css'
 import { Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const DeliveryInfo = () => {
     return (
         <Container fluid>
+            <Header />
             <Container>
                 <div className="row p-5">
                     <div className="col-md-8 p-5">
@@ -35,6 +38,7 @@ const DeliveryInfo = () => {
                 </div>
                    
             </Container>
+            <Footer />
         </Container>
     );
 };

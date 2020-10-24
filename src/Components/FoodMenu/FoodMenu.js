@@ -6,7 +6,10 @@ import { UserContext } from '../../App';
 import { useEffect } from 'react';
 
 const FoodMenu = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [foodMenu, setFoodMenu] = useState([]);
+    const [defaultItem, setDefaultItem] = useState([]);
+    const [cart, setCart] = useState([]);
 
     useEffect(() => {
         fetch(`http://localhost:5000/foodMenu`)
@@ -14,13 +17,22 @@ const FoodMenu = () => {
         .then(data => {
             setFoodMenu(data);
         })
+
+        fetch(`http://localhost:5000/foodMenu`)
+        .then(res => res.json())
+        .then(data => {
+            setDefaultItem(data.filter(item => item.category === "lunch"));
+        })
+
+        fetch(`http://localhost:5000/cart`)
+        .then(res => res.json())
+        .then(data => {
+            setCart(data.filter(cartItem => cartItem.email === loggedInUser.email));
+        })
     }, [])
-    const history = useHistory();
-    history.push("/")
-    // console.log(foodMenu);
     const [foodItems, setFoodItems] = useState(foodMenu.filter(item => item.category === "lunch"));
     const [isClicked, setIsClicked] = useState("lunch");  
-
+    const history = useHistory();
 
     const handleFoodItem = (category) =>{
         setIsClicked(category)
@@ -32,7 +44,6 @@ const FoodMenu = () => {
     const handleCheckout = () =>{
         history.push(`/placeOrder`)
     }
-    // console.log(foodItems);
     return (
         <Container fluid>
             <Container>
@@ -49,8 +60,19 @@ const FoodMenu = () => {
                 </Nav>
                 <div className="row p-4">
                     {
-                        foodItems.map(item => 
-                            <div className="col-md-4 p-3 items">
+                        foodItems.length===0
+                        ?defaultItem.map(item => 
+                            <div className="col-md-4 p-3 items" key={item._id}>
+                                <Link to={`/itemDetails/${item._id}`}>
+                                    <img src={item.image} className="w-50" alt=""/>
+                                    <h5 className="text-dark">{item.title}</h5>
+                                    <p className="text-muted">{item.info}</p>
+                                    <h2 className="text-dark">${item.price}</h2>
+                                </Link>
+                            </div>    
+                        )
+                        :foodItems.map(item => 
+                            <div className="col-md-4 p-3 items" key={item._id}>
                                 <Link to={`/itemDetails/${item._id}`}>
                                     <img src={item.image} className="w-50" alt=""/>
                                     <h5 className="text-dark">{item.title}</h5>
@@ -61,7 +83,11 @@ const FoodMenu = () => {
                         )
                     }
                 </div>
-                <button  onClick={() => handleCheckout()} className="bg-secondary btn text-white rounded pl-5 pr-5 m-5" disabled>Checkout Your Food</button>
+                {
+                    cart.length
+                    ?<button  onClick={() => handleCheckout()} className="bg-danger btn text-white rounded pl-5 pr-5 m-5">Checkout Your Food</button>
+                    :<button  onClick={() => handleCheckout()} className="bg-secondary btn text-white rounded pl-5 pr-5 m-5" disabled>Checkout Your Food</button>
+                }
             </Container>
         </Container>
     );

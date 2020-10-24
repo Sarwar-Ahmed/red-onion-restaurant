@@ -3,10 +3,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
+  Route
 } from "react-router-dom";
 import Home from './Components/Home/Home';
 import NoMatch from './Components/NoMatch/NoMatch';
@@ -14,9 +11,8 @@ import ItemDetails from './Components/ItemDetails/ItemDetails';
 import PlaceOrder from './Components/PlaceOrder/PlaceOrder';
 import DeliveryInfo from './Components/DeliveryInfo/DeliveryInfo';
 import Login from './Components/Login/Login';
-import Header from './Components/Header/Header';
-import Footer from './Components/Footer/Footer';
 import FoodMenu from './Components/FoodMenu/FoodMenu';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 export const UserContext = createContext();
 function App() {
@@ -27,7 +23,6 @@ function App() {
     <div className="App">
       <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
         <Router>
-          <Header />
           <Switch>
             <Route path="/home">
               <Home />
@@ -35,18 +30,18 @@ function App() {
             <Route path="/foodMenu">
               <FoodMenu />
             </Route>
-            <Route path="/itemDetails/:id">
+            <PrivateRoute path="/itemDetails/:id">
               <ItemDetails />
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/placeOrder">
+            <PrivateRoute path="/placeOrder">
               <PlaceOrder />
-            </Route>
-            <Route path="/deliveryInfo">
+            </PrivateRoute>
+            <PrivateRoute path="/deliveryInfo">
               <DeliveryInfo />
-            </Route>
+            </PrivateRoute>
             <Route exact path="/">
               <Home />
             </Route>
@@ -54,7 +49,6 @@ function App() {
               <NoMatch />
             </Route>
           </Switch>
-          <Footer />
         </Router>
       </UserContext.Provider>
       
