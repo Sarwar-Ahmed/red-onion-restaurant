@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import './ItemDetails.css'
 import { Container, Nav } from 'react-bootstrap';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'

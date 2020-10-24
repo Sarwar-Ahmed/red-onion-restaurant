@@ -1,10 +1,10 @@
 import React from 'react';
 import './PlaceOuder.css'
-import { Container, Nav } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';

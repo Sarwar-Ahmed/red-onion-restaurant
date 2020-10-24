@@ -1,7 +1,7 @@
 import { FiShoppingCart } from "react-icons/fi";
 import './Header.css'
 import React from 'react';
-import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../App";
