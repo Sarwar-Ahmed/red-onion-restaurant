@@ -13,7 +13,7 @@ const Header = () => {
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/cart`)
+        fetch(`https://red-onion-restaurant-sarwar.herokuapp.com/cart`)
         .then(res => res.json())
         .then(data => {
             setCart(data.filter(cartItem => cartItem.email === loggedInUser.email));

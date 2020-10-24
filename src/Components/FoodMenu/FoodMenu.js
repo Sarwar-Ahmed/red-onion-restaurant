@@ -12,19 +12,19 @@ const FoodMenu = () => {
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/foodMenu`)
+        fetch(`https://red-onion-restaurant-sarwar.herokuapp.com/foodMenu`)
         .then(res => res.json())
         .then(data => {
             setFoodMenu(data);
         })
 
-        fetch(`http://localhost:5000/foodMenu`)
+        fetch(`https://red-onion-restaurant-sarwar.herokuapp.com/foodMenu`)
         .then(res => res.json())
         .then(data => {
             setDefaultItem(data.filter(item => item.category === "lunch"));
         })
 
-        fetch(`http://localhost:5000/cart`)
+        fetch(`https://red-onion-restaurant-sarwar.herokuapp.com/cart`)
         .then(res => res.json())
         .then(data => {
             setCart(data.filter(cartItem => cartItem.email === loggedInUser.email));

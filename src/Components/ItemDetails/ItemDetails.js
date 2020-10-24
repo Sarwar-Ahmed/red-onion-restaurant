@@ -16,7 +16,7 @@ const ItemDetails = () => {
     const [item, setItem] = useState([]);
     const {id} = useParams();
     useEffect(() => {
-        fetch(`http://localhost:5000/foodMenu`)
+        fetch(`https://red-onion-restaurant-sarwar.herokuapp.com/foodMenu`)
         .then(res => res.json())
         .then(data => {
             setItem(data.find(item => item._id === id));
@@ -30,7 +30,7 @@ const ItemDetails = () => {
         const cartItem = item;
         cartItem.quantity = quantity;
         cartItem.email = loggedInUser.email;
-        fetch('http://localhost:5000/addCart', {
+        fetch('https://red-onion-restaurant-sarwar.herokuapp.com/addCart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
